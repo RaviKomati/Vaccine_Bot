@@ -6,7 +6,7 @@ headers = {
     }
 district_id=[294,276,265]
 
-now_=datetime.datetime.now()
+now_=datetime.datetime.now();''
 day_=str(now_.day)+"-"+str(now_.month)+"-"+str(now_.year)
 
 
@@ -19,16 +19,16 @@ def appoinment_update(dis,day):
         j=(c[i]['sessions'])
         for k in range(len(j)):
             cap=j[k]['available_capacity']
-            if int(cap) != 0:
+            if int(cap) != 0 and int(j[k]['min_age_limit'])==18:
                 availability=str(j[k]['available_capacity_dose1'])+ ' dose 1 & ' + str(j[k]['available_capacity_dose2'])+ ' dose 2 of ' +str(j[k]['vaccine'])+ ' are available on '+str(j[k]['date'])+ ' for above ' + str(j[k]['min_age_limit'])+ ' @ '+str(c[i]['name'])+ ' '+str(c[i]['pincode'])
+                # print(dis)
                 print(availability)
+
 
 
 def API_caller(districts,day):
     for district in districts:
         appoinment_update(district,day)
 
-while True:
-    API_caller(district_id,day_)
-    print('Calling sethu API......')
-    time.sleep(18)
+
+API_caller(district_id,day_)
